@@ -1,16 +1,21 @@
 import React from 'react';
 import SearchBox from './SearchBox';
 import CardList from './CardList';
-import { robots } from './robots';
 import './App.css';
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      robots: robots,
+      robots: [],
       searchfield: ''
     }
+  }
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.cypress.io/users')
+      .then(response => response.json())
+      .then(users => this.setState({ robots: users}));
   }
 
   onSearchChange = (event) => {
@@ -25,7 +30,10 @@ class App extends React.Component {
       <div className='tc'>
         <h1 className='f1'>RoboFriends</h1>
         <SearchBox searchChange={this.onSearchChange} />
-        <CardList robots={filteredRobots} />
+        {this.state.robots.length === 0
+          ? <h1>Loading</h1>
+          : <CardList robots={filteredRobots} />
+        }
       </div>
     );
   }

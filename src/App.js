@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBox from './SearchBox';
+import Scroll from './Scroll';
 import CardList from './CardList';
 import './App.css';
 
@@ -32,7 +33,9 @@ class App extends React.Component {
         <SearchBox searchChange={this.onSearchChange} />
         {this.state.robots.length === 0
           ? <h1>Loading</h1>
-          : <CardList robots={filteredRobots} />
+          : <Scroll>
+              <CardList robots={filteredRobots} />
+            </Scroll>
         }
       </div>
     );

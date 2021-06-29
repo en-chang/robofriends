@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import Header from '../components/Header';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import CardList from '../components/CardList';
@@ -20,7 +21,7 @@ function App(props) {
   })
   return (
     <div className='tc'>
-      <h1 className='f1'>RoboFriends</h1>
+      <Header title={'Robofriends'} />
       <SearchBox searchChange={onSearchChange} />
       {isPending
         ? <h1>Loading</h1>
